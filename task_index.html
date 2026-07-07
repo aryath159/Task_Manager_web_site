@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Task Manager</title>
+    <link rel="stylesheet" href="./task.css" />
+  </head>
+  <body>
+    <!-- we have header , main , footer , popup_msg , popup_window  -->
+
+    <header class="website_header">
+      <!-- we have two div logo and main_nav -->
+      <div class="header_inner">
+        <div class="logo">
+          <span class="logo_icon">✅</span>
+          <h1 class="logo_text">TaskFlow</h1>
+        </div>
+
+        <nav class="main_nav">
+          <ul class="nav_list">
+            <li><a href="" class="nav_link active">DashBoard</a></li>
+            <li><a href="" class="nav_link">Add Task</a></li>
+            <li><a href="" class="nav_link">Stats</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!--  main body starts here-->
+    <main class="main_content">
+      <!-- we have 3 sections in main
+
+            - dashboard
+            - add task 
+            - stats 
+          -->
+
+      <!-- in dash board we have 
+
+           --section title row
+           --filter bar
+           --search bar
+           --task list
+           --empty state
+           
+           -->
+      <section id="dashboard" class="section">
+        
+        <div class="section_title_row">
+          <h2 class="section_title">My Task</h2>
+
+          <!-- shows time or tasks left -->
+          <span class="badge" id="badge_task_count">0 task</span>
+        </div>
+
+        <!-- 3 filter buttons  -->
+
+        <div class="filter_bar">
+          <button class="filter_button active" data-filter="all">All</button>
+
+          <button class="filter_button" data-filter="pending">Pending</button>
+
+          <button class="filter_button" data-filter="completed">Complete</button>
+        </div>
+
+        <div class="search_bar">
+          <label for="search"></label>
+
+          <input
+            type="search"
+            id="search"
+            placeholder="search your task here ..."
+          />
+        </div>
+
+        <!-- will be filled by js  -->
+        <ul class="task_list" id="task_list"></ul>
+
+        <!-- when list is empty , show this  -->
+        <div class="empty_state" id="empty_state">
+          <p class="empty_icon">📋</p>
+          <p class="empty_text">No task added , add one</p>
+        </div>
+
+        
+      </section>
+
+      <section id="add_task" class="section">
+        <h2 class="section_title">Add new Task</h2>
+        <!-- form -->
+
+        <form id="task_form" class="task_form" novalidate>
+          <!-- task title -->
+          <div class="form_grp">
+            <label for="task_title" class="form_label">Task Title *</label>
+            <input
+              type="text"
+              name="task_title"
+              id="task_title"
+              class="input_form"
+              placeholder="e.g. Buy groceries"
+              required
+            />
+
+            <!-- if left empty , show this error -->
+            <span class="error_msg" id="title_error"></span>
+          </div>
+
+          <!-- description -->
+          <div class="form_grp">
+
+              <label for="task_desc" class="form_label">Description</label>
+              <textarea name="description_content" id="task_desc"
+              class="input_form form_text_area"
+               placeholder="Optional details about the task..."
+              rows="3"></textarea>
+
+          </div>
+
+          <!-- priority -->
+          <div class="form_grp">
+
+            <label for="task_priority" class="form_label">Priority</label>
+
+            <select name="task_priority" id="task_priority" class="input_form form_select">
+                <option value="low">🟢 Low</option>
+                <option value="medium">🟡 Medium</option>
+                <option value="high">🔴 High</option>
+            </select>
+          </div>
+
+          <!-- due date -->
+          <div class="form_grp">
+             <label for="due_date" class="form_label">Due Date</label>
+             <input type="date" 
+             id="due_date"
+             name="due_date"
+             class="input_form">
+          </div>
+
+          <!-- submit and clear button -->
+          <div class="button_grp">
+
+            <button class="btn btn_primary">Add Task</button>
+
+            <button class="btn btn_secondary" id="clear_form_button">Clear</button>
+
+          </div>
+
+
+        </form>
+      </section>
+
+
+
+      <section id="stats" class="section">
+        
+        <h2 class="section_title">Your Progress</h2 >
+
+        <div class="stats_grid">
+
+          <!-- we will use grid to arrange this four cards  -->
+           <!-- article tag used for grouping  -->
+
+           <!-- firsrt stat card -->
+           <article class="stat_card">
+             <p class="stat_number" id="total_count">0</p>
+             <p class="stat_label" >Total count</p>
+           </article>
+
+
+            <!-- second stat card -->
+            <article class="stat_card">
+              <p class="stat_number" id="completed">0</p>
+              <p class="stat_label" >Completed</p>
+              
+            </article>
+            
+            <!-- third stat card -->
+            
+            <article class="stat_card" >
+              <p class="stat_number" id="pending">0</p>
+              <p class="stat_label" >Pending</p>
+            </article>
+            
+            <!-- fourth stat card -->
+
+              <article class="stat_card">
+                <p class="stat_number" id="high_priority">0</p>
+             <p class="stat_label" >High Priority</p>
+           </article>
+
+        </div>
+
+        <div class="progress_section">
+
+
+          <!-- progress headin -->
+           <p class="progress_label">Overall Completion</p>
+
+           <!-- colored bar -->
+            <div class="progress_bar_container">
+
+              <div class="progress-bar-bag" id="progress-bar"></div>
+            </div>
+
+            <!-- precent  -->
+             <p class="progress_percent" id="progress_percent">0%</p>
+             
+        </div>
+
+      </section>
+
+
+
+    </main>
+
+    <!-- fooetr starts here -->
+    <footer class="site_footer">
+      <p class="footer_text">TaskFlow — Built while learning HTML, CSS & JS 🚀</p>
+    </footer>
+
+    <div class="notification" id="notification">
+      <span id="notification_msg">🚀 msg will be shown</span>
+    
+    </div>
+    
+    
+    <!-- the pop up window which appears in the screen when clicked edit button -->
+     <div class="popup_background" id="popup_background">
+    
+      <div class="popup_content" role="dialog" aria-modal="true">
+    
+        <div class="popup_header">
+    
+          <h3 class="popup_title">Edit Task</h3>
+          <!-- &times; is cross button -->
+          <button class="popup_close_btn" id="popup_close_btn">&times;</button>
+    
+        </div>
+    
+    
+        <div class="popup_body">
+    
+          <!-- check this input hidden -->
+           <input type="hidden" id="edit-task-id" />
+    
+           
+           <!-- task title -->
+              <div class="form_grp">
+                <label for="edit_task_title" class="form_label">Task Title *</label>
+                <input
+                  type="text"
+                  name="edit_task_title"
+                  id="edit_task_title"
+                  class="input_form"
+                  placeholder="e.g. Buy groceries"
+                  required
+                />
+                </div>
+    
+              <!-- description -->
+              <div class="form_grp">
+    
+                  <label for="edit_task_desc" class="form_label">Description</label>
+                  <textarea name="description_content" id="edit_task_desc"
+                  class="input_form form_text_area"
+                   placeholder="Optional details about the task..."
+                  rows="3"></textarea>
+    
+              </div>
+    
+              <!-- priority -->
+              <div class="form_grp">
+    
+                <label for="edit_task_priority" class="form_label">Priority</label>
+    
+                <select name="task_priority" id="edit_task_priority" class="input_form form_select">
+                    <option value="low">🟢 Low</option>
+                    <option value="medium">🟡 Medium</option>
+                    <option value="high">🔴 High</option>
+                </select>
+              </div>
+    
+              <!-- due date -->
+              <div class="form_grp">
+                 <label for="edit_due_date" class="form_label">Due Date</label>
+                 <input type="date" 
+                 id="edit_due_date"
+                 name="due_date"
+                 class="input_form">
+              </div>
+    
+          
+    
+    
+        </div>
+    
+    
+        <div class="popup_footer">
+              <!-- submit and clear button -->
+              <div class="button_grp">
+    
+                <button class="btn btn_primary" id="save_edit_button">Save changes</button>
+    
+                <button class="btn btn_secondary" id="cancel_edit_button">cancel</button>
+    
+              </div>
+    
+        </div>
+    
+      </div>
+    
+     </div>
+
+     
+  </body>
+  <script src="./task.js"></script>
+  <!-- notification tag - bottom right corner-->
+  
+</html>
+
+
+
