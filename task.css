@@ -36,13 +36,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 
 body{
     
     background-color: var(--color-bg);
     color: var(--color-text);
-
+    position: relative;
     font-family: var(--font-main) ;
 
     min-height: 100vh;
@@ -69,7 +70,7 @@ a{
     z-index: 100; /* should appear above all */
 
     background-color: var(--color-white);
-
+    /* background-color: #1c1a1877; */
     /* h = 0 , v= 0 , blurr = 10 , spread = 0 */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
 
@@ -911,6 +912,21 @@ transition: var(--transition);
 }
 
 
+/* dark mode */
 
+.color_mode{
+    position: absolute;
+    
+    background-color: grey;
+    top:50px;
+    right:0;
+    z-index: 50;
+    padding: var(--space-sm);
+    margin: var(--space-sm);
+    border-radius: 5px;
+    color: var(--color-border);
+
+
+}
 
 

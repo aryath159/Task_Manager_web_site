@@ -53,7 +53,8 @@ const edit_task_desc = document.querySelector('#edit_task_desc');
 const edit_task_priority = document.querySelector('#edit_task_priority');
 const edit_due_date = document.querySelector('#edit_due_date');
 
-
+// dark mode
+const color_change = document.querySelector('#color_mode') ;
 // current state 
 
 // if some data is stored we load it , otherwise start empty
@@ -575,6 +576,31 @@ task_title_input.addEventListener('input' , function(){
     if(task_title_input.value.trim().length > 0) task_title_error_input.textContent = '' ;
 });
 
+
+color_change.addEventListener('click' , function(){
+
+    const ele = document.getElementById('body') ;
+    const top = document.getElementsByClassName('website_header') ;
+    if(color_change.textContent == 'Dark Mode')
+    {
+
+        color_change.textContent = 'Light Mode' ;
+        color_change.style.color = "#251f1977"
+        color_change.style.backgroundColor = '#f0f2f5'
+        ele.style.backgroundColor = "#251f1977";
+         top.style.backgroundColor = '#ffffff' ;
+    }
+    else{
+        color_change.textContent = 'Dark Mode' ;
+         color_change.style.color = "#f0f2f5"
+         color_change.style.backgroundColor = '#251f1977'
+         ele.style.backgroundColor = "#f0f2f5" ;
+         top.style.backgroundColor = '#ffffff' ;
+    }
+
+    
+    console.log('dark');
+})
 // initial render
 
 render_task() ;
