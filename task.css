@@ -916,7 +916,7 @@ transition: var(--transition);
 
 .color_mode{
     position: absolute;
-    
+    border: none;
     background-color: grey;
     top:50px;
     right:0;
@@ -926,7 +926,12 @@ transition: var(--transition);
     border-radius: 5px;
     color: var(--color-border);
 
+    transition: var(--transition);
 
+}
+.color_mode:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 5px 5px rgba(62, 63, 63, 0.854);
 }
 
 

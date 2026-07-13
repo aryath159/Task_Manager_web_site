@@ -585,7 +585,7 @@ color_change.addEventListener('click' , function(){
     {
 
         color_change.textContent = 'Light Mode' ;
-        color_change.style.color = "#251f1977"
+        color_change.style.color = "#29231cee"
         color_change.style.backgroundColor = '#f0f2f5'
         ele.style.backgroundColor = "#251f1977";
          top.style.backgroundColor = '#ffffff' ;
