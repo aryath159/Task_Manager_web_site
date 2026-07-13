@@ -424,6 +424,8 @@ transition: var(--transition);
   font-size: 0.8rem;
   color: var(--color-text-light);
   margin-bottom: var(--space-xs);
+  max-height: 40px;
+  overflow: hidden;
 
 }
 
@@ -854,6 +856,7 @@ transition: var(--transition);
       color: white;
   font-size: 1rem;
   font-weight: 700;
+    
 }
 
 .popup_close_btn{

@@ -215,7 +215,8 @@ function create_task_element(task){
         <button class="task-btn delete-btn" title="Delete task">🗑️</button>
     </div>` ;
 
-
+    li.style.minHeight = "fit-content" ;
+    
     return li ;
     
     
